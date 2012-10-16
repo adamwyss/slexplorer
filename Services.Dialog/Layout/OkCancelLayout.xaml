@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Ijv.Redstone.Services.Dialog.OkCancelLayout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+             MinWidth="300" MinHeight="150">
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Border Child="{Binding}" Grid.Row="0" />
+
+        <Border BorderThickness="0,1,0,0" BorderBrush="#DFDFDF" Background="#F0F0F0" Grid.Row="1" />
+        <Button Click="OnCancelClicked" Content="Cancel" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Row="1" />
+        <Button Click="OnOkClicked" Content="OK" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,0,89,0" Grid.Row="1" />
+    </Grid>
+</UserControl>

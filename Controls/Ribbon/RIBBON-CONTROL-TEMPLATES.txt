@@ -1,0 +1,978 @@
+﻿
+    <Style x:Key="InControlRibbonButton" TargetType="local:RibbonButton">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="MinWidth" Value="22" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:RibbonButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerLeftTopBottom" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerLeftTopBottom" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FFF9CC" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerRight" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupSeparatorIsMouseOverBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TopAndBottomBorder" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsPressedBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerLeftTopBottom" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsPressedBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerLeftTopBottom" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsPressedBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerRight" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupSeparatorIsMouseOverBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Image" Storyboard.TargetProperty="Opacity" To="0.4" Duration="0:0:0.0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="TopAndBottomBorder" BorderThickness="0,1,0,1" BorderBrush="{StaticResource InControlGroupBorderBrushKey}">
+                            <Border x:Name="InnerRight" BorderThickness="0,0,1,0" BorderBrush="{StaticResource InControlGroupSeparatorBrushKey}">
+                                <Border x:Name="InnerLeftTopBottom" BorderThickness="1,1,0,1" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                    <Image x:Name="Image" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Width="16" Height="16" Source="{TemplateBinding Image}" />
+                                </Border>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="InControlRibbonToggleButton" TargetType="local:RibbonToggleButton">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="MinWidth" Value="22" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:RibbonToggleButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <!-- occurs when the butto is unchecked -->
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerLeftTopBottom" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerLeftTopBottom" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FFF9CC" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerRight" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupSeparatorIsMouseOverBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <!-- occurs when the button is checked -->
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedTopAndBottomBorder" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsToggledMouseOverBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedInnerLeftTopBottom" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsToggledMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedInnerLeftTopBottom" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsToggledMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedInnerRight" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupSeparatorIsMouseOverBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TopAndBottomBorder" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsPressedBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerLeftTopBottom" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsPressedBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerLeftTopBottom" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsPressedBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerRight" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupSeparatorIsMouseOverBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Image" Storyboard.TargetProperty="Opacity" To="0.4" Duration="0:0:0.0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedTopAndBottomBorder"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TopAndBottomBorder"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="IsCheckedTopAndBottomBorder" BorderThickness="0,1,0,1" BorderBrush="{StaticResource InControlGroupIsToggledBorderBrushKey}" Visibility="Collapsed">
+                            <Border x:Name="IsCheckedInnerRight" BorderThickness="0,0,1,0" BorderBrush="{StaticResource InControlGroupSeparatorIsMouseOverBrushKey}">
+                                <Border x:Name="IsCheckedInnerLeftTopBottom" BorderThickness="1,1,0,1" BorderBrush="{StaticResource InControlGroupIsToggledBackgroundBrushKey}" Background="{StaticResource InControlGroupIsToggledBackgroundBrushKey}" />
+                            </Border>
+                        </Border>
+                        <Border x:Name="TopAndBottomBorder" BorderThickness="0,1,0,1" BorderBrush="{StaticResource InControlGroupBorderBrushKey}">
+                            <Border x:Name="InnerRight" BorderThickness="0,0,1,0" BorderBrush="{StaticResource InControlGroupSeparatorBrushKey}">
+                                <Border x:Name="InnerLeftTopBottom" BorderThickness="1,1,0,1" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" />
+                            </Border>
+                        </Border>
+                        <Grid Margin="1,2,1,2">
+                            <Image x:Name="Image" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Width="16" Height="16" Source="{TemplateBinding Image}" Margin="{TemplateBinding Padding}" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="InControlRibbonMenuButton" TargetType="local:RibbonMenuButton">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="MinWidth" Value="22" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:RibbonMenuButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <!-- occurs when the butto is unchecked -->
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerLeftTopBottom" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerLeftTopBottom" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#FFF9CC" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerRight" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupSeparatorIsMouseOverBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <!-- occurs when the button is checked -->
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedTopAndBottomBorder" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsToggledMouseOverBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedInnerLeftTopBottom" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsToggledMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedInnerLeftTopBottom" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsToggledMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedInnerRight" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupSeparatorIsMouseOverBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TopAndBottomBorder" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsPressedBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerLeftTopBottom" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsPressedBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerLeftTopBottom" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupIsPressedBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerRight" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource InControlGroupSeparatorIsMouseOverBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Image" Storyboard.TargetProperty="Opacity" To="0.4" Duration="0:0:0.0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="MenuStates">
+                                <VisualState x:Name="Opened">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedTopAndBottomBorder"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TopAndBottomBorder"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Closed" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="IsCheckedTopAndBottomBorder" BorderThickness="0,1,0,1" BorderBrush="{StaticResource InControlGroupIsToggledBorderBrushKey}" Visibility="Collapsed">
+                            <Border x:Name="IsCheckedInnerRight" BorderThickness="0,0,1,0" BorderBrush="{StaticResource InControlGroupSeparatorIsMouseOverBrushKey}">
+                                <Border x:Name="IsCheckedInnerLeftTopBottom" BorderThickness="1,1,0,1" BorderBrush="{StaticResource InControlGroupIsToggledBackgroundBrushKey}" Background="{StaticResource InControlGroupIsToggledBackgroundBrushKey}" />
+                            </Border>
+                        </Border>
+                        <Border x:Name="TopAndBottomBorder" BorderThickness="0,1,0,1" BorderBrush="{StaticResource InControlGroupBorderBrushKey}">
+                            <Border x:Name="InnerRight" BorderThickness="0,0,1,0" BorderBrush="{StaticResource InControlGroupSeparatorBrushKey}">
+                                <Border x:Name="InnerLeftTopBottom" BorderThickness="1,1,0,1" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" />
+                            </Border>
+                        </Border>
+                        <StackPanel Orientation="Horizontal" Margin="1,2,1,2">
+                            <Image x:Name="Image" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Width="16" Height="16" Source="{TemplateBinding Image}" Margin="{TemplateBinding Padding}" />
+                            <Path x:Name="ArrowGlyph" Data="M0,0 L3,3 L6,0 Z" Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,1,2,0" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="InControlRibbonSplitButton" TargetType="local:RibbonSplitButton">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="MinWidth" Value="22" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:RibbonSplitButton">
+                    <Border Name="TopAndBottomBorder" BorderThickness="0,1,0,1" BorderBrush="{StaticResource InControlGroupBorderBrushKey}">
+                        <Border Name="InnerRight" BorderThickness="0,0,1,0" BorderBrush="{StaticResource InControlGroupSeparatorBrushKey}">
+                            <Border Name="InnerLeftTopBottom" BorderThickness="1,1,0,1" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Name="image" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Width="16" Height="16" Source="{TemplateBinding Image}" />
+ <!--
+                                    <local:RibbonMenuButton x:Name="PART_OptionsButton">
+                                        <local:RibbonMenuButton.Template>
+                                            <ControlTemplate TargetType="local:RibbonMenuButton">
+                                                <Grid>
+                                                    <Path x:Name="ArrowGlyph" Data="M0,0 L3,3 L6,0 Z" Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3,2,0,0" />
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </local:RibbonMenuButton.Template>
+                                    </local:RibbonMenuButton>
+-->
+                                </StackPanel>
+                            </Border>
+                        </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <!--
+        BASEBUTTONSTYLE
+    -->
+    <Style x:Key="BaseButtonStyle" TargetType="local:RibbonButtonBase">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="{StaticResource DefaultFontColorBrush}" />
+        <!-- Setter Property="FontFamily" Value="" / -->
+    </Style>
+
+
+
+
+
+
+
+
+
+
+
+    <!--
+        RIBBONBUTTON
+    -->
+    <Style TargetType="local:RibbonButton" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="MinWidth" Value="44" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:RibbonButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsMouseOverBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="White" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedInnerBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LineLabel"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledFontColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Image"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.4"
+                                                         Duration="0:0:0.0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Chrome" CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border x:Name="InnerChrome" BorderThickness="1" CornerRadius="2">
+                                <StackPanel>
+                                    <Image x:Name="Image" Width="32" Height="32" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="1" Source="{TemplateBinding Image}" />
+                                    <TextBlock x:Name="LineLabel" TextAlignment="Center" TextWrapping="Wrap" LineHeight="13" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Margin="2,3,2,0" Text="{TemplateBinding Label}" />
+                                </StackPanel>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <!--
+        RIBBONBUTTON (ALT STYLE: SMALLWITHTEXT)
+    -->
+    <Style x:Key="AlternateRibbonButtonStyle" TargetType="local:RibbonButton" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Height" Value="22" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:RibbonButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsMouseOverBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="White" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedInnerBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LineLabel"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledFontColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Image"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.4"
+                                                         Duration="0:0:0.0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Chrome" CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <Border x:Name="InnerChrome" BorderThickness="1" CornerRadius="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image x:Name="Image" Width="16" Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1,0,1,0" Source="{TemplateBinding Image}" />
+                                    <TextBlock x:Name="LineLabel" TextAlignment="Center" TextWrapping="Wrap" LineHeight="13" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Margin="2,0,2,0" Text="{TemplateBinding Label}" />
+                                </StackPanel>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <LinearGradientBrush x:Key="RibbonToggleButtonIsCheckedMouseOverBackgroundBrushKey" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#EFCFAD" />
+        <GradientStop Offset="0.1" Color="#FFDFBD" />
+        <GradientStop Offset="0.36" Color="#FFDB9C" />
+        <GradientStop Offset="0.36" Color="#FFCF6B" />
+        <GradientStop Offset="1" Color="#FFF3A5" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="RibbonToggleButtonIsCheckedBackgroundBrushKey" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#E7CBAD" />
+        <GradientStop Offset="0.1" Color="#F7D7B5" />
+        <GradientStop Offset="0.36" Color="#FFD38C" />
+        <GradientStop Offset="0.36" Color="#FFC75A" />
+        <GradientStop Offset="1" Color="#FFEFA5" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="RibbonToggleButtonIsCheckedBorderBrushKey" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#C69239" />
+        <GradientStop Offset="1" Color="#C6B25A" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="RibbonToggleButtonIsCheckedInnerBorderBrushKey" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#E7CBAD" />
+        <GradientStop Offset="0.1" Color="#F7D7B5" />
+        <GradientStop Offset="0.36" Color="#FFD38C" />
+        <GradientStop Offset="0.36" Color="#FFC75A" />
+        <GradientStop Offset="1" Color="#FFEFA5" />
+    </LinearGradientBrush>
+
+
+
+
+
+
+
+    <!--
+        RIBBONTOGGLEBUTTON
+    -->
+    <Style TargetType="local:RibbonToggleButton" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="MinWidth" Value="44" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:RibbonToggleButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <!-- Occurs when the button is not checked -->
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsMouseOverBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="White" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <!-- Occurs when the button is checked -->
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedChrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonToggleButtonIsCheckedMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonToggleButtonIsCheckedBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedInnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonToggleButtonIsCheckedInnerBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedInnerBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LineLabel"
+                                                                       Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledFontColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Image"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.4"
+                                                         Duration="0:0:0.0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedChrome"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="IsCheckedChrome" Background="{StaticResource RibbonToggleButtonIsCheckedBackgroundBrushKey}" BorderBrush="{StaticResource RibbonToggleButtonIsCheckedBorderBrushKey}"
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3" Visibility="Collapsed">
+                            <Border x:Name="IsCheckedInnerChrome" BorderBrush="{StaticResource RibbonToggleButtonIsCheckedInnerBorderBrushKey}"  BorderThickness="1" CornerRadius="2"  />
+                        </Border>
+                        <Border x:Name="Chrome" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3" >
+                            <Border x:Name="InnerChrome" BorderThickness="1" CornerRadius="2" />
+                        </Border>
+                        <StackPanel>
+                            <Image x:Name="Image" Width="32" Height="32" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="1" Source="{TemplateBinding Image}" />
+                            <TextBlock x:Name="LineLabel" TextAlignment="Center" TextWrapping="Wrap" LineHeight="13" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Margin="2,3,2,0" Text="{TemplateBinding Label}" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    
+    
+    
+
+    <!--
+        RIBBONMENUBUTTON
+    -->
+    <Style TargetType="local:RibbonMenuButton" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="MinWidth" Value="44" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:RibbonMenuButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <!-- Occurs when the button is not checked -->
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsMouseOverBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="White" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <!-- Occurs when the button is checked -->
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedChrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonToggleButtonIsCheckedMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonToggleButtonIsCheckedBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedInnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonToggleButtonIsCheckedInnerBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedInnerBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Image" Storyboard.TargetProperty="Opacity" To="0.4" Duration="0:0:0.0" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LineLabel" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledFontColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowGlyph" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledFontColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="MenuStates">
+                                <VisualState x:Name="Opened">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedChrome"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Closed" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="IsCheckedChrome" Background="{StaticResource RibbonToggleButtonIsCheckedBackgroundBrushKey}" BorderBrush="{StaticResource RibbonToggleButtonIsCheckedBorderBrushKey}"
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3" Visibility="Collapsed">
+                            <Border x:Name="IsCheckedInnerChrome" BorderBrush="{StaticResource RibbonToggleButtonIsCheckedInnerBorderBrushKey}"  BorderThickness="1" CornerRadius="2"  />
+                        </Border>
+                        <Border x:Name="Chrome" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3" >
+                            <Border x:Name="InnerChrome" BorderThickness="1" CornerRadius="2" />
+                        </Border>
+                        <StackPanel>
+                            <Image x:Name="Image" Width="32" Height="32" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="1" Source="{TemplateBinding Image}" />
+                            <TextBlock x:Name="LineLabel" TextAlignment="Center" TextWrapping="Wrap" LineHeight="13" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Margin="2,3,2,0" Text="{TemplateBinding Label}" />
+                            <Path x:Name="ArrowGlyph" Data="M0,0 L3,3 L6,0 Z" Fill="Black" HorizontalAlignment="Center" Margin="0,3,0,0" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="HorizontalRibbonMenuButtonStyle" TargetType="local:RibbonMenuButton" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="MinWidth" Value="44" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:RibbonMenuButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <!-- Occurs when the button is not checked -->
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsMouseOverBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="White" />
+                                        </ObjectAnimationUsingKeyFrames>
+
+                                        <!-- Occurs when the button is checked -->
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedChrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonToggleButtonIsCheckedMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonToggleButtonIsCheckedBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedInnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonToggleButtonIsCheckedInnerBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedInnerBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Image" Storyboard.TargetProperty="Opacity" To="0.4" Duration="0:0:0.0" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LineLabel" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledFontColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowGlyph" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledFontColorBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="MenuStates">
+                                <VisualState x:Name="Opened">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedChrome"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Visibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Closed" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="IsCheckedChrome" Background="{StaticResource RibbonToggleButtonIsCheckedBackgroundBrushKey}" BorderBrush="{StaticResource RibbonToggleButtonIsCheckedBorderBrushKey}"
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3" Visibility="Collapsed">
+                            <Border x:Name="IsCheckedInnerChrome" BorderBrush="{StaticResource RibbonToggleButtonIsCheckedInnerBorderBrushKey}"  BorderThickness="1" CornerRadius="2"  />
+                        </Border>
+                        <Border x:Name="Chrome" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3" >
+                            <Border x:Name="InnerChrome" BorderThickness="1" CornerRadius="2" />
+                        </Border>
+                        <StackPanel Orientation="Horizontal" Margin="1,2">
+                            <Image x:Name="Image" Width="16" Height="16" VerticalAlignment="Top" HorizontalAlignment="Center"  Margin="1" Source="{TemplateBinding Image}" />
+                            <TextBlock x:Name="LineLabel" TextAlignment="Center" TextWrapping="Wrap" LineHeight="13" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Margin="2,3" Text="{TemplateBinding Label}" />
+                            <Path x:Name="ArrowGlyph" Data="M0,0 L3,3 L6,0 Z" Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2,1" />
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--
+    
+    DEVELOPER NOTE: ANY THING BELOW HERE HASN'T HAD IT'S STYLE UPDATED TO MATCH THE WIN7 Ribbon
+    
+    -->
+
+
+    <Style TargetType="local:RibbonSplitButton" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="MinWidth" Value="44" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:RibbonSplitButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsMouseOverBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsMouseOverBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="White" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <!--
+                                        TODO :: Split button needs to be updated here
+                                        -->
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBackgroundBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome"
+                                                                       Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedInnerBorderBrushKey}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_OptionsButton"
+                                                                       Storyboard.TargetProperty="IsEnabled">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="False" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetName="Image"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="0.4"
+                                                         Duration="0:0:0.0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
+                            <Border Name="InnerChrome" Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="29" />
+                                    </Grid.RowDefinitions>
+                                    <Image x:Name="Image" Width="32" Height="32" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="1,1,1,3" Source="{TemplateBinding Image}" Grid.Row="0" />
+                                    <Border Background="{Binding ElementName=Chrome, Path=BorderBrush}" BorderBrush="{Binding ElementName=InnerChrome, Path=BorderBrush}" BorderThickness="0,1,0,1" Height="3" HorizontalAlignment="Stretch" Margin="-1,0,-1,0" Grid.Row="1" />
+                                    <local:RibbonMenuButton x:Name="PART_OptionsButton" Label="{TemplateBinding Label}" Menu="{TemplateBinding OptionsMenu}" Grid.Row="2">
+                                        <local:RibbonMenuButton.Template>
+                                            <ControlTemplate TargetType="local:RibbonMenuButton">
+                                                <Grid>
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Normal" />
+                                                            <VisualState x:Name="MouseOver" />
+                                                            <VisualState x:Name="Pressed">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome" Storyboard.TargetProperty="Background">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBackgroundBrushKey}" />
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome" Storyboard.TargetProperty="BorderBrush">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedBorderBrushKey}" />
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerChrome" Storyboard.TargetProperty="BorderBrush">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource RibbonButtonIsPressedInnerBorderBrushKey}" />
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Disabled">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LineLabel" Storyboard.TargetProperty="Foreground">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledFontColorBrush}" />
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowGlyph" Storyboard.TargetProperty="Fill">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisabledFontColorBrush}" />
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                        <VisualStateGroup x:Name="MenuStates">
+                                                            <VisualState x:Name="Opened">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsCheckedChrome" Storyboard.TargetProperty="Visibility">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Chrome" Storyboard.TargetProperty="Visibility">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Closed" />
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <Border x:Name="IsCheckedChrome" Background="{StaticResource RibbonToggleButtonIsCheckedBackgroundBrushKey}" CornerRadius="3" Visibility="Collapsed">
+                                                        <Border x:Name="IsCheckedInnerChrome" BorderBrush="{StaticResource RibbonToggleButtonIsCheckedInnerBorderBrushKey}"  BorderThickness="1" CornerRadius="2"  />
+                                                    </Border>
+                                                    <Border x:Name="Chrome" Background="{TemplateBinding Background}" CornerRadius="3" >
+                                                        <Border x:Name="InnerChrome" BorderThickness="1" CornerRadius="2" />
+                                                    </Border>
+                                                    <StackPanel>
+                                                        <TextBlock x:Name="LineLabel" TextAlignment="Center" TextWrapping="Wrap" LineHeight="13" LineStackingStrategy="BlockLineHeight" VerticalAlignment="Center" Margin="2,3,2,0" Text="{TemplateBinding Label}" />
+                                                        <Path x:Name="ArrowGlyph" Data="M0,0 L3,3 L6,0 Z" Fill="Black" HorizontalAlignment="Center" Margin="0,3,0,0" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </local:RibbonMenuButton.Template>
+                                    </local:RibbonMenuButton>
+                                </Grid>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+

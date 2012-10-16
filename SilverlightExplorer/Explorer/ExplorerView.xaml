@@ -1,0 +1,255 @@
+﻿<UserControl x:Class="Ijv.Redstone.Explorer.Views.ExplorerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+             xmlns:controls="clr-namespace:Ijv.Redstone.Controls;assembly=Ijv.Redstone.Controls"
+             xmlns:localcontrols="clr-namespace:Ijv.Redstone.Controls">
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="HACK_BINDING_NavigationColumnWidth" MinWidth="60" />
+            <ColumnDefinition x:Name="HACK_BINDING_NavigationColumnSplitter" Width="Auto" />
+            <ColumnDefinition Width="*" MinWidth="150" />
+            <ColumnDefinition x:Name="HACK_BINDING_PreviewColumnSplitter" Width="Auto" />
+            <ColumnDefinition x:Name="HACK_BINDING_PreviewColumnWidth" MinWidth="50" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="165" />
+            <RowDefinition x:Name="HACK_BINDING_DetailsRowSplitter" Height="Auto" />
+            <RowDefinition x:Name="HACK_BINDING_DetailsRowHeight" MinHeight="50" />
+        </Grid.RowDefinitions>
+
+        <sdk:TreeView x:Name="NavigationTree" ItemsSource="{Binding NavigationItems}" BorderThickness="0" Grid.Row="0" Grid.Column="0">
+            <sdk:TreeView.ItemTemplate>
+                <sdk:HierarchicalDataTemplate ItemsSource="{Binding ChildContainers}">
+                    <controls:DataTemplatePresenter Content="{Binding}">
+<!--
+                        <controls:DataTemplatePresenter.ContentTemplateSelector>
+                            <controls3:ExplorerTemplateSelector>
+                                <controls3:ExplorerTemplateSelector.ViewModelTemplate>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{Binding View}" />
+                                    </DataTemplate>
+                                </controls3:ExplorerTemplateSelector.ViewModelTemplate>
+                                <controls3:ExplorerTemplateSelector.FavoritesTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Grid Width="16" Height="16" Margin="0,0,5,0">
+                                                <Image Source="./assets/favorites16.png" />
+                                            </Grid>
+                                            <TextBlock Text="Favorites" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </controls3:ExplorerTemplateSelector.FavoritesTemplate>
+                                <controls3:ExplorerTemplateSelector.NoFavoritesChildTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="No favorites saved." Foreground="DarkGray" FontStyle="Italic" Margin="10,0,10,0" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </controls3:ExplorerTemplateSelector.NoFavoritesChildTemplate>
+                            </controls3:ExplorerTemplateSelector>
+                        </controls:DataTemplatePresenter.ContentTemplateSelector>
+-->
+                    </controls:DataTemplatePresenter>
+                </sdk:HierarchicalDataTemplate>
+            </sdk:TreeView.ItemTemplate>
+        </sdk:TreeView>
+
+        <sdk:GridSplitter x:Name="HACK_BINDING_NavigationColumnGridSplitter" Style="{StaticResource ExplorerSplitterStyle}" Background="#D6E5F5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" />
+        
+        <Grid x:Name="ItemsSurface" Background="Transparent" Grid.Row="0" Grid.Column="2">
+            
+            
+            <controls:RightClick.ContextMenu>
+                <!--
+                <controls:Menu>
+                    <controls:MenuItem Header="Open" />
+                    <controls:MenuSeparator />
+                    <controls:MenuItem Header="Cut" Command="{Binding CutCommand}" />
+                    <controls:MenuItem Header="Copy" Command="{Binding CopyCommand}" />
+                    <controls:MenuItem Header="Paste" Command="{Binding PasteCommand}" CanExecuteTarget="Visibility" />
+                    <controls:MenuSeparator />
+                    <controls:MenuItem Header="Delete" Command="{Binding DeleteCommand}" />
+                    <controls:MenuItem Header="Rename" Command="{Binding RenameCommand}" />
+                    <controls:MenuSeparator />
+                    <controls:MenuItem Header="Properties" Command="{Binding PropertiesCommand}" />
+                </controls:Menu>
+                -->
+                <controls:Menu>
+                    <controls:Menu.Resources>
+                        <localcontrols:ExplorerViewsConverter x:Key="ExplorerViewsToChecked" />
+                    </controls:Menu.Resources>
+                    <controls:MenuItem Header="View">
+                        <controls:MenuItem Header="Extra large icons" IsCheckable="True" IsChecked="{Binding ViewType, Converter={StaticResource ExplorerViewsToChecked}, ConverterParameter=ExtraLargeIcons, Mode=TwoWay}" />
+                        <controls:MenuItem Header="Large icons" IsCheckable="True" IsChecked="{Binding ViewType, Converter={StaticResource ExplorerViewsToChecked}, ConverterParameter=LargeIcons, Mode=TwoWay}" />
+                        <controls:MenuItem Header="Medium icons" IsCheckable="True" IsChecked="{Binding ViewType, Converter={StaticResource ExplorerViewsToChecked}, ConverterParameter=MediumIcons, Mode=TwoWay}" />
+                        <controls:MenuItem Header="Small icons" IsCheckable="True" IsChecked="{Binding ViewType, Converter={StaticResource ExplorerViewsToChecked}, ConverterParameter=SmallIcons, Mode=TwoWay}" />
+                        <controls:MenuItem Header="List" IsCheckable="True" IsChecked="{Binding ViewType, Converter={StaticResource ExplorerViewsToChecked}, ConverterParameter=List, Mode=TwoWay}" />
+                        <controls:MenuItem Header="Details" IsCheckable="True" IsChecked="{Binding ViewType, Converter={StaticResource ExplorerViewsToChecked}, ConverterParameter=Details, Mode=TwoWay}" />
+                        <controls:MenuItem Header="Tile" IsCheckable="True" IsChecked="{Binding ViewType, Converter={StaticResource ExplorerViewsToChecked}, ConverterParameter=Tiles, Mode=TwoWay}" />
+                        <controls:MenuItem Header="Content" IsCheckable="True" IsChecked="{Binding ViewType, Converter={StaticResource ExplorerViewsToChecked}, ConverterParameter=Content, Mode=TwoWay}" />
+                    </controls:MenuItem>
+                    <controls:MenuItem Header="Sort By">
+                        <controls:MenuItem Header="Name" />
+                        <controls:MenuItem Header="Type" />
+                        <controls:MenuSeparator />
+                        <controls:MenuItem Header="Ascending" />
+                        <controls:MenuItem Header="Descending" />
+                    </controls:MenuItem>
+                    <controls:MenuItem Header="Group By" Visibility="Collapsed">
+                    </controls:MenuItem>
+                    <controls:MenuItem Header="Refresh" />
+                    <controls:MenuSeparator />
+                    <controls:MenuItem Header="Paste" Command="{Binding PasteCommand}" />
+                    <controls:MenuSeparator />
+                    <controls:MenuItem Header="New">
+                        <controls:MenuItem Header="Folder" Command="{Binding NewFolderCommand}" />
+                        <controls:MenuSeparator />
+                        <controls:MenuItem Header="Story" />
+                        <controls:MenuItem Header="Image" />
+                        <controls:MenuItem Header="Slideshow" />
+                        <controls:MenuItem Header="Video" />
+                        <controls:MenuItem Header="Interactive" />
+                        <controls:MenuItem Header="More..." />
+                    </controls:MenuItem>
+                </controls:Menu>
+
+            </controls:RightClick.ContextMenu>
+
+
+            <ListBox ItemsSource="{Binding ElementName=NavigationTree, Path=SelectedItem.Children}" SelectedValue="{Binding SelectedObject, Mode=TwoWay}"
+                     BorderThickness="0" SelectionMode="Extended"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+<!--
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <controls2:WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+-->
+<!--               
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical" Margin="4">
+                            <Grid Margin="0,0,5,0">
+                                <controls:DataTemplatePresenter Width="256" Height="256" Content="{Binding}" ContentTemplateSelector="{StaticResource IconSelector}" />
+                            </Grid>
+                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" TextAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+-->
+            </ListBox>
+
+
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0">
+                <TextBlock Text="This folder is empty." Foreground="Gray" />
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,0">
+                    <TextBlock Text="View: " Foreground="Gray" />
+                    <TextBlock Text="{Binding ViewType}" Foreground="Gray" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,5,0,0">
+                    <TextBlock Text="Scale: x" Foreground="Gray" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding ViewScale}" Foreground="Gray" />
+                        <TextBlock Text="(" Foreground="Gray" Margin="15,0,0,0" />
+                        <TextBlock Text="{Binding ScaleFactor, ElementName=ViewButton}" Foreground="Gray" />
+                        <TextBlock Text=")" Foreground="Gray" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            
+
+        </Grid>
+
+        <sdk:GridSplitter x:Name="HACK_BINDING_PreviewColumnGridSplitter" Style="{StaticResource ExplorerSplitterStyle}" Background="#D6E5F5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="3" />
+
+        <Grid Grid.Row="0" Grid.Column="4">
+            <!--
+            <controls:DataTemplatePresenter Content="{Binding SelectedContent}">
+                <controls:DataTemplatePresenter.ContentTemplateSelector>
+                    <controls:PreviewTemplateSelector>
+                        <controls:PreviewTemplateSelector.ItemNullTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Select a file to preview." Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </controls:PreviewTemplateSelector.ItemNullTemplate>
+                        <controls:PreviewTemplateSelector.NoPreviewTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="No preview available." Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </controls:PreviewTemplateSelector.NoPreviewTemplate>
+                    </controls:PreviewTemplateSelector>
+                </controls2:DataTemplatePresenter.ContentTemplateSelector>
+            </controls2:DataTemplatePresenter>
+            -->
+        </Grid>
+
+        <sdk:GridSplitter x:Name="HACK_BINDING_DetailsRowGridSplitter" VerticalAlignment="Center" HorizontalAlignment="Stretch" IsTabStop="False" Grid.Row="1" Grid.ColumnSpan="5">
+            <sdk:GridSplitter.Template>
+                <ControlTemplate TargetType="sdk:GridSplitter">
+                    <Grid x:Name="Root" IsHitTestVisible="{TemplateBinding IsEnabled}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver" />
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="0.5" Duration="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="Focused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid x:Name="HorizontalTemplate" Height="4" />
+                        <Grid x:Name="VerticalTemplate" Visibility="Collapsed" />
+                        <Rectangle HorizontalAlignment="Stretch">
+                            <Rectangle.Fill>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                    <GradientStop Offset="0.0" Color="#D6E5F5" />
+                                    <GradientStop Offset="1.0" Color="#F1F5FB" />
+                                </LinearGradientBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Grid>
+                </ControlTemplate>
+            </sdk:GridSplitter.Template>
+        </sdk:GridSplitter>
+
+        <Grid Background="#F1F5FB" Grid.Row="2" Grid.ColumnSpan="5">
+            <controls:RightClick.ContextMenu>
+                <controls:Menu>
+                    <controls:Menu.Resources>
+                        <localcontrols:DetailRowHeightConverter x:Key="RowHeightToChecked" /> 
+                    </controls:Menu.Resources>
+                    <controls:MenuItem Header="Size">
+                        <controls:MenuItem Header="Small" IsCheckable="True" IsChecked="{Binding DetailsRowHeight, Converter={StaticResource RowHeightToChecked}, ConverterParameter=50, Mode=TwoWay}" />
+                        <controls:MenuItem Header="Medium" IsCheckable="True" IsChecked="{Binding DetailsRowHeight, Converter={StaticResource RowHeightToChecked}, ConverterParameter=90, Mode=TwoWay}" />
+                        <controls:MenuItem Header="Large" IsCheckable="True" IsChecked="{Binding DetailsRowHeight, Converter={StaticResource RowHeightToChecked}, ConverterParameter=155, Mode=TwoWay}" />
+                    </controls:MenuItem>
+                </controls:Menu>
+            </controls:RightClick.ContextMenu>
+            
+            <StackPanel Orientation="Horizontal">
+
+                <Grid Margin="15,0,0,0">
+<!--                    
+                    <controls:DataTemplatePresenter Content="{Binding SelectedContent}" ContentTemplateSelector="{StaticResource IconSelector}" />
+-->
+                </Grid>
+
+            </StackPanel>
+            
+            
+        </Grid>
+
+        <Canvas IsHitTestVisible="False" Grid.Row="0" Grid.Column="2">
+            <Rectangle x:Name="SelectionRectangle" Visibility="Collapsed" Fill="#663399FF" Stroke="#FF3399FF" />
+        </Canvas>
+        
+    </Grid>
+</UserControl>

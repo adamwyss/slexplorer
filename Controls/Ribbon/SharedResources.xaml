@@ -1,0 +1,81 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    
+    
+    <SolidColorBrush x:Key="DisabledFontColorBrush" Color="#ACA899" />
+    <SolidColorBrush x:Key="DefaultFontColorBrush" Color="#1E395B" />
+
+
+
+    <SolidColorBrush x:Key="RibbonButtonIsMouseOverBorderBrushKey" Color="#FFB600" />
+    <LinearGradientBrush x:Key="RibbonButtonIsMouseOverBackgroundBrushKey" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#FFEFDE" />
+        <GradientStop Offset="0.36" Color="#FFDFBD" />
+        <GradientStop Offset="0.36" Color="#FFCF6B" />
+        <GradientStop Offset="1" Color="#FFF7B5" />
+    </LinearGradientBrush>
+
+
+    <LinearGradientBrush x:Key="RibbonButtonIsPressedBackgroundBrushKey" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#D6C3AD" />
+        <GradientStop Offset="0.1" Color="#EFCFAD" />
+        <GradientStop Offset="0.36" Color="#EFC78C" />
+        <GradientStop Offset="0.36" Color="#EFBE63" />
+        <GradientStop Offset="1" Color="#EFE39C" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="RibbonButtonIsPressedBorderBrushKey" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#C69239" />
+        <GradientStop Offset="1" Color="#C6B25A" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="RibbonButtonIsPressedInnerBorderBrushKey" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#D6C3AD" />
+        <GradientStop Offset="0.1" Color="#EFCFAD" />
+        <GradientStop Offset="0.36" Color="#EFC78C" />
+        <GradientStop Offset="0.36" Color="#EFBE63" />
+        <GradientStop Offset="1" Color="#EFE39C" />
+    </LinearGradientBrush>
+
+
+
+
+
+
+
+
+
+
+
+
+    <LinearGradientBrush x:Key="RibbonToggleButtonIsCheckedMouseOverBackgroundBrushKey" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#EFCFAD" />
+        <GradientStop Offset="0.1" Color="#FFDFBD" />
+        <GradientStop Offset="0.36" Color="#FFDB9C" />
+        <GradientStop Offset="0.36" Color="#FFCF6B" />
+        <GradientStop Offset="1" Color="#FFF3A5" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="RibbonToggleButtonIsCheckedBackgroundBrushKey" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#E7CBAD" />
+        <GradientStop Offset="0.1" Color="#F7D7B5" />
+        <GradientStop Offset="0.36" Color="#FFD38C" />
+        <GradientStop Offset="0.36" Color="#FFC75A" />
+        <GradientStop Offset="1" Color="#FFEFA5" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="RibbonToggleButtonIsCheckedBorderBrushKey" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#C69239" />
+        <GradientStop Offset="1" Color="#C6B25A" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="RibbonToggleButtonIsCheckedInnerBorderBrushKey" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0" Color="#E7CBAD" />
+        <GradientStop Offset="0.1" Color="#F7D7B5" />
+        <GradientStop Offset="0.36" Color="#FFD38C" />
+        <GradientStop Offset="0.36" Color="#FFC75A" />
+        <GradientStop Offset="1" Color="#FFEFA5" />
+    </LinearGradientBrush>
+
+
+
+
+</ResourceDictionary>
